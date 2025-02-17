@@ -1,3 +1,16 @@
+# models.py
+
+from django.apps import AppConfig
+from django.db.models import BigAutoField
+
+class BaseConfig(AppConfig):
+    default_auto_field = BigAutoField
+
+
+
+
+
+
 from django.db import models
 from django.conf import settings
 from django.contrib.auth.models import AbstractUser

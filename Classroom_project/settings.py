@@ -1,3 +1,8 @@
+
+
+
+
+
 import os
 from dotenv import load_dotenv,find_dotenv
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
@@ -9,6 +14,17 @@ load_dotenv(find_dotenv())
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = os.getenv('SECRET_KEY')
+
+
+
+# settings.py
+
+# Importez le module pour générer une clé secrète
+from django.core.management.utils import get_random_secret_key
+
+# Définissez la clé secrète
+SECRET_KEY = get_random_secret_key()
+
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -25,7 +41,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'base',
+    'base', #Notre application
     'crispy_forms',
     'freezegun', #for testing
     'mock'  #for testing
@@ -43,10 +59,17 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'Classroom_project.urls'
 
+import os
+
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [
+            os.path.join(BASE_DIR, 'templates'),  # Chemin d'accès au répertoire de modèles principal
+            os.path.join(BASE_DIR, 'templates', 'bootstrap4'),  # Chemin d'accès au sous-répertoire bootstrap4
+        ],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -59,7 +82,15 @@ TEMPLATES = [
     },
 ]
 
+
+
 WSGI_APPLICATION = 'Classroom_project.wsgi.application'
+
+# settings.py
+
+# Utiliser un champ AutoField de grande taille par défaut
+DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
 
 
 # Database
@@ -123,10 +154,13 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 AUTH_USER_MODEL = 'base.CustomUser'
 
-EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+MAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = os.getenv('EMAIL_HOST')
 EMAIL_PORT = os.getenv('EMAIL_PORT')
 EMAIL_HOST_USER = os.getenv('EMAIL_HOST_USER')
 EMAIL_HOST_PASSWORD = os.getenv('EMAIL_HOST_PASSWORD')
 EMAIL_USE_TLS = True
 EMAIL_USE_SSL = False
+
+
+

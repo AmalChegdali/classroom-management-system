@@ -85,3 +85,4 @@ You are done with the setup now!
 -----------------------------------
 
 <h3 align="center"><b>Developed with :heart: by <a href="https://github.com/m607stars">Mayank</a>, <a href="https://github.com/Aafiya-H">Aafiya</a> and <a href="https://github.com/talha1503">Talha</a></b></h1>
+"# classroom-django-" 

@@ -96,70 +96,72 @@
               <span aria-hidden="true">&times;</span>
             </button>
           </div>
-           <div class="modal-body">
-                <form method="POST" class="cclass_form" id="mark_assignment_form">
-                  {% csrf_token %}
-                  <div class="form-group">
-                    <input type="number" class="form-control" id="submission_marks" placeholder="Submission Marks">
-                  </div>
-                  <button type="submit" class="btn btn-primary">Submit</button>
-                </form> 
-           </div>
-        </div>
+           <div class="
+           modal-body">
+           <form method="POST" class="cclass_form" id="mark_assignment_form">
+             {% csrf_token %}
+             <div class="form-group">
+               <input type="number" class="form-control" id="submission_marks" name="submission_marks" placeholder="Submission Marks">
+             </div>
+             <button type="submit" class="btn btn-primary">Submit</button>
+           </form> 
       </div>
-    </div>
-    {% endfor %}
+   </div>
+ </div>
+</div>
+{% endfor %}
 </body>
 <script>
-   $('a[href$="#mark_assignment"]').on( "click", function() {
-        $('#mark_assignment').modal('show');
-        var assignment_id = $(this).data('assignment_value');
-        var submission_id = $(this).data('submission_value');
-        var user_id = $(this).data('user_id');
+$('a[href$="#mark_assignment"]').on( "click", function() {
+   $('#mark_assignment').modal('show');
+   var assignment_id = $(this).data('assignment_value');
+   var submission_id = $(this).data('submission_value');
+   var user_id = $(this).data('user_id');
 
-        var assignment_hidden_field = document.getElementById('assignment_id');
-        assignment_hidden_field.value = assignment_id;
+   var assignment_hidden_field = document.getElementById('assignment_id');
+   assignment_hidden_field.value = assignment_id;
 
-        var submission_hidden_field = document.getElementById('submission_id');
-        submission_hidden_field.value = submission_id;
+   var submission_hidden_field = document.getElementById('submission_id');
+   submission_hidden_field.value = submission_id;
 
-        var user_hidden_field = document.getElementById('user_id');
-        user_hidden_field.value = user_id;
+   var user_hidden_field = document.getElementById('user_id');
+   user_hidden_field.value = user_id;
 
-    });
+});
 
-    $('#mark_assignment_form').on('submit', function (e) {
-        var submission_id = document.getElementById('submission_id').value;    
-        var user_id = document.getElementById('user_id').value;    
-        var mark_assignment_url =  "{% url 'mark_submission_request' submission_id=1 teacher_id=0 %}".replace('1', submission_id);
-        mark_assignment_url = mark_assignment_url.replace('0',user_id)
-        console.log(mark_assignment_url);
-        var assignment_id = document.getElementById('assignment_id').value;   
-        $.ajax({
-            type:'POST',
-            url:mark_assignment_url,
-            data:{
-                submission_marks:$('#submission_marks').val(),
-                csrfmiddlewaretoken:$('input[name=csrfmiddlewaretoken]').val(),
-                action: 'post'
-            },
-            success:function(json){
-                document.getElementById("mark_assignment_form").reset();
-                $(".posts").prepend('<div class="col-md-6">'+
-                    '<div class="row no-gutters border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">' +
-                        '<div class="col p-4 d-flex flex-column position-static">' +
-                            '<h3 class="mb-0">' + json.submission_marks + '</h3>' +
-                        '</div>' +
-                    '</div>' +
-                '</div>' 
-                )
-                window.location.href='http://127.0.0.1:8000/assignment_summary/' + assignment_id.toString();
-                window.location.reload();
-            },
-            error : function(xhr,errmsg,err) {
-                console.log(xhr.status + ": " + xhr.responseText);
-            }
-        });
-      });
+$('#mark_assignment_form').on('submit', function (e) {
+   e.preventDefault(); // Prevent the form from submitting normally
+   var submission_id = $('#submission_id').val();    
+   var user_id = $('#user_id').val();    
+   var mark_assignment_url =  "{% url 'mark_submission_request' submission_id=1 teacher_id=0 %}".replace('1', submission_id);
+   mark_assignment_url = mark_assignment_url.replace('0',user_id)
+   console.log(mark_assignment_url);
+   var assignment_id = $('#assignment_id').val();   
+   $.ajax({
+       type:'POST',
+       url:mark_assignment_url,
+       data:{
+           submission_marks:$('#submission_marks').val(),
+           csrfmiddlewaretoken:$('input[name=csrfmiddlewaretoken]').val(),
+           action: 'post'
+       },
+       success:function(json){
+           $('#mark_assignment_form').trigger("reset"); // Reset the form after successful submission
+           $(".posts").prepend('<div class="col-md-6">'+
+               '<div class="row no-gutters border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">' +
+                   '<div class="col p-4 d-flex flex-column position-static">' +
+                       '<h3 class="mb-0">' + json.submission_marks + '</h3>' +
+                   '</div>' +
+               '</div>' +
+           '</div>' 
+           )
+           window.location.href='http://127.0.0.1:8000/assignment_summary/' + assignment_id.toString();
+           window.location.reload();
+       },
+       error : function(xhr,errmsg,err) {
+           console.log(xhr.status + ": " + xhr.responseText);
+       }
+   });
+ });
 </script>
-</html> 
+</html>
