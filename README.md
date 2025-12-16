@@ -275,21 +275,33 @@ Ce projet est sous licence personnelle. Tous droits réservés.
 ## 👥 Contributeurs
 
 - **Amal Chegdali** - Développement et maintenance
-- **Mayank** - Développement initial
-- **Aafiya** - Développement initial
-- **Talha** - Développement initial
 
-## 👤 Auteur Principal
+-----------------------------------
+<h2 align='center'>
+Interface 
+</h2>
+<p align="center">
+  <img src ="./assets/1.png" width = 500px>
+</p>
+<p align="center">
+  <img src ="./assets/2.png" width = 500px>
+</p>
+<p align="center">
+  <img src ="./assets/3.png" width = 500px>
+</p>
+<p align="center">
+  <img src ="./assets/4.png" width = 500px>
+</p>
 
-**Amal Chegdali**
+-----------------------------------
 
-- GitHub: [@AmalChegdali](https://github.com/AmalChegdali)
-- LinkedIn: [Amal Chegdali](https://www.linkedin.com/in/amal-chegdali-37a5b9239/)
-- Email: a.chegdali01@gmail.com
+###             Tech stack
+`Backend` : Django <br>
+`Database` : SQLite <br>
+`Frontend` : CSS, HTML, Bootstrap, jQuery  <br>
 
-## 🙏 Remerciements
+-----------------------------------
 
-- Communauté Django pour les ressources et le support
 - Tous les contributeurs qui ont participé au projet
 - Bibliothèques open-source utilisées
 
@@ -326,29 +338,3 @@ Ce projet est sous licence personnelle. Tous droits réservés.
 ⭐ Si ce projet vous a été utile, n'hésitez pas à lui donner une étoile !
 
 -----------------------------------
-
-<h2 align='center'>
-Interface 
-</h2>
-<p align="center">
-  <img src ="./assets/1.png" width = 500px>
-</p>
-<p align="center">
-  <img src ="./assets/2.png" width = 500px>
-</p>
-<p align="center">
-  <img src ="./assets/3.png" width = 500px>
-</p>
-<p align="center">
-  <img src ="./assets/4.png" width = 500px>
-</p>
-
------------------------------------
-
-###             Tech stack
-`Backend` : Django <br>
-`Database` : SQLite <br>
-`Frontend` : CSS, HTML, Bootstrap, jQuery  <br>
-
------------------------------------
-
